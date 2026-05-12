@@ -19,7 +19,6 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Help</h4>
           <ul className="space-y-2 text-sm">
-            <li><Link to="/tracking" className="hover:text-white transition-colors">Order Tracking</Link></li>
             <li><Link to="/shipping" className="hover:text-white transition-colors">Shipping</Link></li>
             <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
           </ul>
@@ -27,8 +26,8 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Legal</h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="/privacy_policies" className="hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="/privacy_policies" className="hover:text-white transition-colors">Terms of Service</a></li>
           </ul>
         </div>
       </div>

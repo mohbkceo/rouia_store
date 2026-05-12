@@ -7,6 +7,8 @@ import Search from "../pages/Search.jsx";
 import NotFound from "../pages/NotFound.jsx";
 import CartPage from "../pages/CartPage.jsx";
 import CheckoutSuccess from "../pages/CheckoutSuccess.jsx";
+import Contact from "../pages/Contact.jsx";
+import PrivacyPolicyPage from "../pages/PrivacyPolicies.jsx";
 
 export default function AppRoutes() {
   return (
@@ -22,6 +24,15 @@ export default function AppRoutes() {
             path="/checkout/success"
             element={<CheckoutSuccess />}
           />
+        <Route
+            path="/contact"
+            element={<Contact />}
+          />
+        <Route
+            path="/privacy_policies"
+            element={<PrivacyPolicyPage />}
+          />
+        
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
