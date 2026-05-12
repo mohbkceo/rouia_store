@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
         <div className="col-span-2 md:col-span-1">
           <div className="font-display text-2xl font-bold text-white mb-3">
-            SOLE<span className="text-accent">.</span>
+            HK.3.5<span className="text-accent">.</span>
           </div>
           <p className="text-sm leading-relaxed">Premium footwear for every step of your journey.</p>
         </div>
@@ -33,7 +33,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 py-4 text-center text-xs text-white/30">
-        © {new Date().getFullYear()} SOLE. All rights reserved.
+        © {new Date().getFullYear()} HK.3.5. All rights reserved.
       </div>
     </footer>
   );

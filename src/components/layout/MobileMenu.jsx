@@ -37,7 +37,7 @@ export default function MobileMenu({ open, onClose }) {
           ))}
         </nav>
         <div className="px-6 pb-8">
-          <p className="text-xs text-brand/30 text-center">© {new Date().getFullYear()} SOLE</p>
+          <p className="text-xs text-brand/30 text-center">© {new Date().getFullYear()} HK.3.5</p>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 export default function FloatingSocials({
-  whatsappLink = "https://wa.me/213553486647",
-  instagramLink = "https://instagram.com/yourpage",
+  whatsappLink = "https://wa.me/213553374615",
+  instagramLink = "https://www.instagram.com/hk.3.5/",
 }) {
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3">

@@ -25,7 +25,7 @@ export default function Navbar() {
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="font-display text-xl font-bold tracking-tight text-brand">
-            SOLE<span className="text-accent">.</span>
+            HK.3.5<span className="text-accent">.</span>
           </Link>
 
           {/* Desktop nav links */}

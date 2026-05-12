@@ -1,23 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
-import {
-  Trash2,
-  ShoppingBag,
-  ArrowRight,
-} from "lucide-react";
+import { Link } from "react-router-dom";
+import { Trash2, ShoppingBag, ArrowRight } from "lucide-react";
+import { useState } from "react";
 
 import { useStore } from "../context/StoreContext.jsx";
 import { formatPrice } from "../utils/formatPrice.js";
 
-import { createDraftOrder } from "../services/orders.js";
-
 import Button from "../components/common/Button.jsx";
 import CheckoutForm from "../components/checkout/CheckoutForm.jsx";
 
-import { useState } from "react";
+const WHATSAPP_NUMBER = "213553374615"; 
 
 export default function CartPage() {
-  const navigate = useNavigate();
-
   const {
     cart = [],
     removeFromCart,
@@ -28,51 +21,62 @@ export default function CartPage() {
   const [loading, setLoading] = useState(false);
 
   const subtotal = cart.reduce(
-    (acc, item) =>
-      acc + item.price * item.quantity,
+    (acc, item) => acc + item.price * item.quantity,
     0
   );
 
-  // -----------------------------------
-  // CHECKOUT
-  // -----------------------------------
+  function buildWhatsAppMessage(formData) {
+    const itemsText = cart
+      .map(
+        (item, index) =>
+          `${index + 1}. ${item.title}${
+            item.variantTitle && item.variantTitle !== "Default Title"
+              ? ` - ${item.variantTitle}`
+              : ""
+          }
+Qty: ${item.quantity}
+Price: ${formatPrice(
+  item.price * item.quantity,
+  item.currencyCode || "USD"
+)}`
+      )
+      .join("\n\n");
+
+    return `
+New Order Request
+
+Customer Information:
+- Full Name: ${formData.fullName}
+- Phone Number: ${formData.phoneNumber}
+- Address: ${formData.address}
+
+Items:
+${itemsText}
+
+Subtotal: ${formatPrice(subtotal, "USD")}
+Shipping: Calculated later
+Total: ${formatPrice(subtotal, "USD")}
+
+Please confirm this order.
+    `.trim();
+  }
 
   async function handleCheckout(formData) {
     try {
       setLoading(true);
 
-      const payload = {
-        customer: formData,
+      const message = buildWhatsAppMessage(formData);
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+        message
+      )}`;
 
-        items: cart.map((item) => ({
-          variantId: item.variantId,
-          title: item.title,
-          variantTitle: item.variantTitle,
-          quantity: item.quantity,
-          price: item.price,
-        })),
-
-        subtotal,
-      };
-
-      const response =
-        await createDraftOrder(payload);
-
-      if (response.success) {
-        clearCart();
-
-        navigate("/checkout/success");
-      }
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
     }
   }
-
-  // -----------------------------------
-  // EMPTY CART
-  // -----------------------------------
 
   if (cart.length === 0) {
     return (
@@ -90,26 +94,16 @@ export default function CartPage() {
             Looks like you haven’t added anything yet.
           </p>
 
-          <Link
-            to="/collection/all"
-            className="mt-8"
-          >
-            <Button className="px-8 py-3">
-              Continue Shopping
-            </Button>
+          <Link to="/collections/all" className="mt-8">
+            <Button className="px-8 py-3">Continue Shopping</Button>
           </Link>
         </div>
       </section>
     );
   }
 
-  // -----------------------------------
-  // PAGE
-  // -----------------------------------
-
   return (
     <section className="px-4 md:px-6 py-10 max-w-7xl mx-auto">
-      {/* HEADER */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-10">
         <div>
           <h1 className="font-display text-3xl md:text-4xl font-bold text-brand">
@@ -117,9 +111,7 @@ export default function CartPage() {
           </h1>
 
           <p className="text-brand/50 mt-2">
-            {cart.length} item
-            {cart.length > 1 ? "s" : ""} in
-            your cart
+            {cart.length} item{cart.length > 1 ? "s" : ""} in your cart
           </p>
         </div>
 
@@ -132,22 +124,12 @@ export default function CartPage() {
       </div>
 
       <div className="grid lg:grid-cols-[1fr_420px] gap-10">
-        {/* CART ITEMS */}
         <div className="flex flex-col gap-5">
           {cart.map((item) => (
             <div
               key={item.variantId}
-              className="
-                border
-                border-brand/10
-                rounded-3xl
-                p-4 md:p-5
-                flex
-                gap-4
-                bg-white
-              "
+              className="border border-brand/10 rounded-3xl p-4 md:p-5 flex gap-4 bg-white"
             >
-              {/* IMAGE */}
               <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl overflow-hidden bg-brand/5 shrink-0">
                 <img
                   src={item.image}
@@ -156,7 +138,6 @@ export default function CartPage() {
                 />
               </div>
 
-              {/* INFO */}
               <div className="flex-1 flex flex-col">
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -165,22 +146,15 @@ export default function CartPage() {
                     </h2>
 
                     {item.variantTitle &&
-                      item.variantTitle !==
-                        "Default Title" && (
+                      item.variantTitle !== "Default Title" && (
                         <p className="text-sm text-brand/50 mt-1">
-                          {
-                            item.variantTitle
-                          }
+                          {item.variantTitle}
                         </p>
                       )}
                   </div>
 
                   <button
-                    onClick={() =>
-                      removeFromCart(
-                        item.variantId
-                      )
-                    }
+                    onClick={() => removeFromCart(item.variantId)}
                     className="text-brand/40 hover:text-red-500 transition-colors"
                   >
                     <Trash2 className="w-5 h-5" />
@@ -188,16 +162,12 @@ export default function CartPage() {
                 </div>
 
                 <div className="mt-auto pt-5 flex items-end justify-between gap-4">
-                  {/* QUANTITY */}
                   <div className="flex items-center border border-brand/10 rounded-full overflow-hidden">
                     <button
                       onClick={() =>
                         updateCartQuantity(
                           item.variantId,
-                          Math.max(
-                            1,
-                            item.quantity - 1
-                          )
+                          Math.max(1, item.quantity - 1)
                         )
                       }
                       className="px-4 py-2 text-brand hover:bg-brand/5 transition-colors"
@@ -211,10 +181,7 @@ export default function CartPage() {
 
                     <button
                       onClick={() =>
-                        updateCartQuantity(
-                          item.variantId,
-                          item.quantity + 1
-                        )
+                        updateCartQuantity(item.variantId, item.quantity + 1)
                       }
                       className="px-4 py-2 text-brand hover:bg-brand/5 transition-colors"
                     >
@@ -222,23 +189,15 @@ export default function CartPage() {
                     </button>
                   </div>
 
-                  {/* PRICE */}
                   <div className="text-right">
                     <p className="text-sm text-brand/40">
-                      {formatPrice(
-                        item.price,
-                        item.currencyCode ||
-                          "USD"
-                      )}{" "}
-                      each
+                      {formatPrice(item.price, item.currencyCode || "USD")} each
                     </p>
 
                     <p className="text-lg font-semibold text-brand">
                       {formatPrice(
-                        item.price *
-                          item.quantity,
-                        item.currencyCode ||
-                          "USD"
+                        item.price * item.quantity,
+                        item.currencyCode || "USD"
                       )}
                     </p>
                   </div>
@@ -248,20 +207,7 @@ export default function CartPage() {
           ))}
         </div>
 
-        {/* SUMMARY + CHECKOUT */}
-        <div
-          className="
-            h-fit
-            sticky
-            top-24
-            border
-            border-brand/10
-            rounded-3xl
-            p-6
-            bg-brand/[0.02]
-          "
-        >
-          {/* SUMMARY */}
+        <div className="h-fit sticky top-24 border border-brand/10 rounded-3xl p-6 bg-brand/[0.02]">
           <div>
             <h2 className="font-display text-2xl font-bold text-brand">
               Order Summary
@@ -270,55 +216,36 @@ export default function CartPage() {
             <div className="mt-6 flex flex-col gap-4">
               <div className="flex items-center justify-between text-brand/60">
                 <span>Subtotal</span>
-
                 <span className="font-medium text-brand">
-                  {formatPrice(
-                    subtotal,
-                    "USD"
-                  )}
+                  {formatPrice(subtotal, "USD")}
                 </span>
               </div>
 
               <div className="flex items-center justify-between text-brand/60">
                 <span>Shipping</span>
-
                 <span className="font-medium text-brand">
                   Calculated later
                 </span>
               </div>
 
               <div className="border-t border-brand/10 pt-4 flex items-center justify-between">
-                <span className="text-lg font-semibold text-brand">
-                  Total
-                </span>
-
+                <span className="text-lg font-semibold text-brand">Total</span>
                 <span className="text-2xl font-bold text-brand">
-                  {formatPrice(
-                    subtotal,
-                    "USD"
-                  )}
+                  {formatPrice(subtotal, "USD")}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* FORM */}
           <div className="mt-8 pt-8 border-t border-brand/10">
             <div className="flex items-center gap-2 mb-5">
               <ArrowRight className="w-4 h-4 text-brand/50" />
-
-              <h3 className="font-semibold text-brand">
-                Checkout Information
-              </h3>
+              <h3 className="font-semibold text-brand">Checkout Information</h3>
             </div>
 
-            <CheckoutForm
-              loading={loading}
-              onSubmit={handleCheckout}
-            />
+            <CheckoutForm loading={loading} onSubmit={handleCheckout} />
           </div>
 
-          {/* CONTINUE SHOPPING */}
           <Link
             to="/collection/all"
             className="block text-center text-sm text-brand/50 hover:text-brand transition-colors mt-6"

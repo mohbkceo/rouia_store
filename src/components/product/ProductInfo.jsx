@@ -1,15 +1,14 @@
 import { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { formatPrice } from "../../utils/formatPrice.js";
 import { useStore } from "../../context/StoreContext.jsx";
-import { createDraftOrder } from "../../services/orders.js";
 
 import Button from "../common/Button.jsx";
 import CheckoutForm from "../checkout/CheckoutForm.jsx";
 
+const WHATSAPP_NUMBER = "213553374615"; //213553374615
+
 export default function ProductInfo({ product }) {
-  const navigate = useNavigate();
   const { addToCart } = useStore();
 
   const variants = useMemo(
@@ -17,9 +16,7 @@ export default function ProductInfo({ product }) {
     [product]
   );
 
-  const [selectedVariant, setSelectedVariant] = useState(
-    variants[0] || null
-  );
+  const [selectedVariant, setSelectedVariant] = useState(variants[0] || null);
   const [added, setAdded] = useState(false);
   const [buyingNow, setBuyingNow] = useState(false);
 
@@ -49,59 +46,45 @@ export default function ProductInfo({ product }) {
     setTimeout(() => setAdded(false), 2000);
   }
 
-  async function handleBuyNow(formData) {
-  if (!selectedVariant) return;
+  function buildWhatsAppMessage(formData) {
+    return `
+New Order Request
 
-  try {
-    setBuyingNow(true);
+Customer:
+- Full Name: ${formData.fullName}
+- Phone Number: ${formData.phoneNumber}
+- Address: ${formData.address}
 
-    const payload = {
-      customer: {
-        fullName: formData.fullName,
-        phoneNumber:
-          formData.phoneNumber,
-        address: formData.address,
-      },
+Product:
+- Title: ${product.title}
+- Variant: ${selectedVariant?.title || "Default"}
+- Quantity: 1
+- Price: ${selectedPrice?.amount || "0"} ${selectedPrice?.currencyCode || ""}
 
-      items: [
-        {
-          productId: product.id,
+Subtotal: ${selectedPrice?.amount || "0"} ${selectedPrice?.currencyCode || ""}
 
-          variantId: selectedVariant.id,
-
-          title: product.title,
-
-          variantTitle:
-            selectedVariant.title,
-
-          quantity: 1,
-
-          price: parseFloat(
-            selectedPrice?.amount || 0
-          ),
-
-          currencyCode:
-            selectedPrice?.currencyCode,
-        },
-      ],
-
-      subtotal: parseFloat(
-        selectedPrice?.amount || 0
-      ),
-    };
-
-    const response =
-      await createDraftOrder(payload);
-
-    if (response.success) {
-      navigate("/checkout/success");
-    }
-  } catch (err) {
-    console.error(err);
-  } finally {
-    setBuyingNow(false);
+Please confirm this order.
+    `.trim();
   }
-}
+
+  async function handleBuyNow(formData) {
+    if (!selectedVariant) return;
+
+    try {
+      setBuyingNow(true);
+
+      const message = buildWhatsAppMessage(formData);
+      const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+        message
+      )}`;
+
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setBuyingNow(false);
+    }
+  }
 
   return (
     <div className="flex flex-col gap-6">
@@ -113,10 +96,7 @@ export default function ProductInfo({ product }) {
         <div className="mt-3 flex flex-wrap items-center gap-2 sm:gap-3">
           {selectedPrice && (
             <span className="text-xl sm:text-2xl font-semibold text-brand">
-              {formatPrice(
-                selectedPrice.amount,
-                selectedPrice.currencyCode
-              )}
+              {formatPrice(selectedPrice.amount, selectedPrice.currencyCode)}
             </span>
           )}
 
@@ -145,13 +125,6 @@ export default function ProductInfo({ product }) {
 
           <div className="flex flex-wrap gap-2">
             {variants.map((v) => {
-              const variantPrice = v.price;
-              const variantCompareAt = v.compareAtPrice;
-              const variantHasDiscount =
-                variantCompareAt &&
-                parseFloat(variantCompareAt.amount) >
-                  parseFloat(variantPrice?.amount);
-
               return (
                 <button
                   key={v.id}
@@ -200,10 +173,7 @@ export default function ProductInfo({ product }) {
           Quick Checkout
         </h2>
 
-        <CheckoutForm
-          loading={buyingNow}
-          onSubmit={handleBuyNow}
-        />
+        <CheckoutForm loading={buyingNow} onSubmit={handleBuyNow} />
       </div>
     </div>
   );
