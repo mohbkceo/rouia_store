@@ -92,7 +92,7 @@ const policyData = {
     {
       title: "11. Contact Us",
       content: [
-        `If you have any questions about this Privacy Policy, you can contact us at ${"support@example.com"} or via phone at ${"+213553374615"}.`,
+        `If you have any questions about this Privacy Policy, you can contact us via phone at ${"+213553374615"}.`,
       ],
     },
   ],
