@@ -8,7 +8,7 @@ import { formatPrice } from "../utils/formatPrice.js";
 import Button from "../components/common/Button.jsx";
 import CheckoutForm from "../components/checkout/CheckoutForm.jsx";
 
-const WHATSAPP_NUMBER = "213553374615"; 
+const WHATSAPP_NUMBER = "213553374615";
 
 export default function CartPage() {
   const {
@@ -34,8 +34,8 @@ export default function CartPage() {
               ? ` - ${item.variantTitle}`
               : ""
           }
-Qty: ${item.quantity}
-Price: ${formatPrice(
+Qté : ${item.quantity}
+Prix : ${formatPrice(
   item.price * item.quantity,
   item.currencyCode || "USD"
 )}`
@@ -43,21 +43,21 @@ Price: ${formatPrice(
       .join("\n\n");
 
     return `
-New Order Request
+Nouvelle demande de commande
 
-Customer Information:
-- Full Name: ${formData.fullName}
-- Phone Number: ${formData.phoneNumber}
-- Address: ${formData.address}
+Informations client :
+- Nom complet : ${formData.fullName}
+- Numéro de téléphone : ${formData.phoneNumber}
+- Adresse : ${formData.address}
 
-Items:
+Articles :
 ${itemsText}
 
-Subtotal: ${formatPrice(subtotal, "USD")}
-Shipping: Calculated later
-Total: ${formatPrice(subtotal, "USD")}
+Sous-total : ${formatPrice(subtotal, "USD")}
+Livraison : Calculée ultérieurement
+Total : ${formatPrice(subtotal, "USD")}
 
-Please confirm this order.
+Veuillez confirmer cette commande.
     `.trim();
   }
 
@@ -87,15 +87,15 @@ Please confirm this order.
           </div>
 
           <h1 className="font-display text-3xl font-bold text-brand">
-            Your cart is empty
+            Votre panier est vide
           </h1>
 
           <p className="mt-3 text-brand/60 leading-relaxed">
-            Looks like you haven’t added anything yet.
+            On dirait que vous n'avez encore rien ajouté.
           </p>
 
           <Link to="/collections/all" className="mt-8">
-            <Button className="px-8 py-3">Continue Shopping</Button>
+            <Button className="px-8 py-3">Continuer vos achats</Button>
           </Link>
         </div>
       </section>
@@ -107,11 +107,11 @@ Please confirm this order.
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-10">
         <div>
           <h1 className="font-display text-3xl md:text-4xl font-bold text-brand">
-            Shopping Cart
+            Panier
           </h1>
 
           <p className="text-brand/50 mt-2">
-            {cart.length} item{cart.length > 1 ? "s" : ""} in your cart
+            {cart.length} article{cart.length > 1 ? "s" : ""} dans votre panier
           </p>
         </div>
 
@@ -119,7 +119,7 @@ Please confirm this order.
           onClick={clearCart}
           className="text-sm text-brand/50 hover:text-red-500 transition-colors"
         >
-          Clear Cart
+          Vider le panier
         </button>
       </div>
 
@@ -191,7 +191,7 @@ Please confirm this order.
 
                   <div className="text-right">
                     <p className="text-sm text-brand/40">
-                      {formatPrice(item.price, item.currencyCode || "USD")} each
+                      {formatPrice(item.price, item.currencyCode || "USD")} pièce
                     </p>
 
                     <p className="text-lg font-semibold text-brand">
@@ -210,21 +210,21 @@ Please confirm this order.
         <div className="h-fit sticky top-24 border border-brand/10 rounded-3xl p-6 bg-brand/[0.02]">
           <div>
             <h2 className="font-display text-2xl font-bold text-brand">
-              Order Summary
+              Résumé de la commande
             </h2>
 
             <div className="mt-6 flex flex-col gap-4">
               <div className="flex items-center justify-between text-brand/60">
-                <span>Subtotal</span>
+                <span>Sous-total</span>
                 <span className="font-medium text-brand">
                   {formatPrice(subtotal, "USD")}
                 </span>
               </div>
 
               <div className="flex items-center justify-between text-brand/60">
-                <span>Shipping</span>
+                <span>Livraison</span>
                 <span className="font-medium text-brand">
-                  Calculated later
+                  Calculée ultérieurement
                 </span>
               </div>
 
@@ -240,7 +240,7 @@ Please confirm this order.
           <div className="mt-8 pt-8 border-t border-brand/10">
             <div className="flex items-center gap-2 mb-5">
               <ArrowRight className="w-4 h-4 text-brand/50" />
-              <h3 className="font-semibold text-brand">Checkout Information</h3>
+              <h3 className="font-semibold text-brand">Informations de paiement</h3>
             </div>
 
             <CheckoutForm loading={loading} onSubmit={handleCheckout} />
@@ -250,7 +250,7 @@ Please confirm this order.
             to="/collection/all"
             className="block text-center text-sm text-brand/50 hover:text-brand transition-colors mt-6"
           >
-            Continue Shopping
+            Continuer vos achats
           </Link>
         </div>
       </div>

@@ -3,8 +3,8 @@ import { ShieldCheck, Mail, Globe, Clock3 } from "lucide-react";
 const policyData = {
   companyName: "HK.3.5",
   websiteName: "HK.3.5",
-  effectiveDate: "January 1, 2026",
-  lastUpdated: "January 1, 2026",
+  effectiveDate: "1 janvier 2026",
+  lastUpdated: "1 janvier 2026",
   contactEmail: "hk.3.5.@gmail.com",
   contactPhone: "+213553374615",
   websiteUrl: "https://rouia-store.vercel.app",
@@ -12,87 +12,87 @@ const policyData = {
     {
       title: "1. Introduction",
       content: [
-        `At ${"Your Company Name"}, we respect your privacy and are committed to protecting your personal data.`,
-        `This Privacy Policy explains how we collect, use, store, and protect information when you visit ${"Your Website"} or use our services.`,
+        `Chez ${"Nom de votre entreprise"}, nous respectons votre vie privée et nous nous engageons à protéger vos données personnelles.`,
+        `Cette politique de confidentialité explique comment nous collectons, utilisons, stockons et protégeons les informations lorsque vous visitez ${"Votre site web"} ou utilisez nos services.`,
       ],
     },
     {
-      title: "2. Information We Collect",
+      title: "2. Informations que nous collectons",
       content: [
-        "We may collect the following types of information:",
-        "• Personal information you provide directly, such as your name, phone number, email address, and delivery address.",
-        "• Order and transaction details when you place an order.",
-        "• Technical data such as browser type, device information, IP address, and usage behavior.",
+        "Nous pouvons collecter les types d’informations suivants :",
+        "• Les informations personnelles que vous fournissez directement, telles que votre nom, votre numéro de téléphone, votre adresse e-mail et votre adresse de livraison.",
+        "• Les détails de commande et de transaction lorsque vous passez une commande.",
+        "• Les données techniques telles que le type de navigateur, les informations sur l’appareil, l’adresse IP et le comportement d’utilisation.",
       ],
     },
     {
-      title: "3. How We Use Your Information",
+      title: "3. Comment nous utilisons vos informations",
       content: [
-        "We use your information to:",
-        "• Process and fulfill orders.",
-        "• Contact you regarding your order or support requests.",
-        "• Improve our website, services, and customer experience.",
-        "• Send updates, offers, or notifications where permitted.",
+        "Nous utilisons vos informations pour :",
+        "• Traiter et exécuter les commandes.",
+        "• Vous contacter concernant votre commande ou vos demandes d’assistance.",
+        "• Améliorer notre site web, nos services et l’expérience client.",
+        "• Envoyer des mises à jour, offres ou notifications lorsque cela est autorisé.",
       ],
     },
     {
-      title: "4. Sharing Your Information",
+      title: "4. Partage de vos informations",
       content: [
-        "We do not sell your personal information.",
-        "We may share information only with trusted third parties when necessary to:",
-        "• Process payments.",
-        "• Deliver products.",
-        "• Provide technical support or website hosting.",
-        "• Comply with legal obligations.",
+        "Nous ne vendons pas vos informations personnelles.",
+        "Nous pouvons partager des informations uniquement avec des tiers de confiance lorsque cela est nécessaire pour :",
+        "• Traiter les paiements.",
+        "• Livrer les produits.",
+        "• Fournir une assistance technique ou un hébergement du site web.",
+        "• Respecter les obligations légales.",
       ],
     },
     {
-      title: "5. Data Security",
+      title: "5. Sécurité des données",
       content: [
-        "We take reasonable technical and organizational measures to protect your personal data from unauthorized access, alteration, disclosure, or destruction.",
-        "However, no method of transmission over the internet is completely secure, and we cannot guarantee absolute security.",
+        "Nous prenons des mesures techniques et organisationnelles raisonnables pour protéger vos données personnelles contre tout accès, modification, divulgation ou destruction non autorisés.",
+        "Cependant, aucune méthode de transmission sur Internet n’est totalement sécurisée, et nous ne pouvons pas garantir une sécurité absolue.",
       ],
     },
     {
-      title: "6. Cookies and Tracking",
+      title: "6. Cookies et suivi",
       content: [
-        "Our website may use cookies and similar technologies to enhance user experience, analyze traffic, and improve functionality.",
-        "You can control or disable cookies through your browser settings, but some features of the site may not work properly.",
+        "Notre site web peut utiliser des cookies et des technologies similaires pour améliorer l’expérience utilisateur, analyser le trafic et optimiser les fonctionnalités.",
+        "Vous pouvez contrôler ou désactiver les cookies via les paramètres de votre navigateur, mais certaines fonctionnalités du site peuvent ne pas fonctionner correctement.",
       ],
     },
     {
-      title: "7. Your Rights",
+      title: "7. Vos droits",
       content: [
-        "Depending on your location, you may have the right to:",
-        "• Access the personal data we hold about you.",
-        "• Request correction or deletion of your data.",
-        "• Object to certain processing activities.",
-        "• Withdraw consent where processing is based on consent.",
+        "Selon votre lieu de résidence, vous pouvez avoir le droit de :",
+        "• Accéder aux données personnelles que nous détenons à votre sujet.",
+        "• Demander la correction ou la suppression de vos données.",
+        "• Vous opposer à certaines opérations de traitement.",
+        "• Retirer votre consentement lorsque le traitement est basé sur le consentement.",
       ],
     },
     {
-      title: "8. Data Retention",
+      title: "8. Conservation des données",
       content: [
-        "We keep personal information only for as long as necessary to fulfill the purposes described in this policy, unless a longer retention period is required by law.",
+        "Nous conservons les informations personnelles uniquement pendant la durée nécessaire pour atteindre les objectifs décrits dans cette politique, sauf si une période de conservation plus longue est exigée par la loi.",
       ],
     },
     {
-      title: "9. External Links",
+      title: "9. Liens externes",
       content: [
-        "Our website may contain links to third-party websites or services. We are not responsible for the privacy practices or content of those third parties.",
+        "Notre site web peut contenir des liens vers des sites ou services tiers. Nous ne sommes pas responsables des pratiques de confidentialité ou du contenu de ces tiers.",
       ],
     },
     {
-      title: "10. Changes to This Policy",
+      title: "10. Modifications de cette politique",
       content: [
-        "We may update this Privacy Policy from time to time.",
-        "Any changes will be posted on this page with an updated revision date.",
+        "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre.",
+        "Toute modification sera publiée sur cette page avec une date de révision mise à jour.",
       ],
     },
     {
-      title: "11. Contact Us",
+      title: "11. Nous contacter",
       content: [
-        `If you have any questions about this Privacy Policy, you can contact us via phone at ${"+213553374615"}.`,
+        `Si vous avez des questions concernant cette politique de confidentialité, vous pouvez nous contacter par téléphone au ${"+213553374615"}.`,
       ],
     },
   ],
@@ -101,23 +101,23 @@ const policyData = {
 const quickFacts = [
   {
     icon: Mail,
-    label: "Email",
+    label: "E-mail",
     value: policyData.contactEmail,
   },
   {
     icon: Globe,
-    label: "Website",
+    label: "Site web",
     value: policyData.websiteUrl,
   },
   {
     icon: Clock3,
-    label: "Last Updated",
+    label: "Dernière mise à jour",
     value: policyData.lastUpdated,
   },
   {
     icon: ShieldCheck,
-    label: "Policy",
-    value: "Privacy & Data Protection",
+    label: "Politique",
+    value: "Confidentialité et protection des données",
   },
 ];
 
@@ -127,22 +127,21 @@ export default function PrivacyPolicyPage() {
       <div className="text-center max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 rounded-full border border-brand/10 bg-brand/[0.03] px-4 py-2 text-sm text-brand/70">
           <ShieldCheck className="w-4 h-4" />
-          Privacy Policy
+          Politique de confidentialité
         </div>
 
         <h1 className="mt-5 font-display text-4xl md:text-5xl font-bold text-brand">
-          Privacy Policy
+          Politique de confidentialité
         </h1>
 
         <p className="mt-4 text-brand/60 leading-relaxed">
-          This page explains how {policyData.companyName} handles personal
-          information collected through {policyData.websiteName}.
+          Cette page explique comment {policyData.companyName} gère les informations personnelles collectées via {policyData.websiteName}.
         </p>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-brand/50">
-          <span>Effective: {policyData.effectiveDate}</span>
+          <span>En vigueur : {policyData.effectiveDate}</span>
           <span className="hidden sm:inline">•</span>
-          <span>Updated: {policyData.lastUpdated}</span>
+          <span>Mise à jour : {policyData.lastUpdated}</span>
         </div>
       </div>
 

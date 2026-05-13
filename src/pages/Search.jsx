@@ -40,7 +40,7 @@ export default function Search() {
 
       {!loading && results.length > 0 && (
         <>
-          <p className="text-sm text-brand/40 mb-4">{results.length} results for "{query}"</p>
+          <p className="text-sm text-brand/40 mb-4">{results.length} résultats pour "{query}"</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {results.map((p) => <ProductCard key={p.id} product={p} />)}
           </div>

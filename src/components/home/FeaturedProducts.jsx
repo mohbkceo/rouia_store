@@ -12,9 +12,9 @@ export default function FeaturedProducts() {
   return (
     <section className="px-4">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="font-display text-2xl font-bold text-brand">Featured Products</h2>
+        <h2 className="font-display text-2xl font-bold text-brand">Produits vedettes</h2>
         <Link to="/collections/all" className="text-sm text-brand/50 hover:text-brand transition-colors">
-          View all →
+          Afficher tout →
         </Link>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

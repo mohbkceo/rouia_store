@@ -28,11 +28,11 @@ export default function Navbar() {
             HK.3.5<span className="text-accent">.</span>
           </Link>
 
-          {/* Desktop nav links */}
+          {/* Liens de navigation pour desktop */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-brand/70">
-            <Link to="/" className="hover:text-brand transition-colors">Home</Link>
-            <Link to="/collections/all" className="hover:text-brand transition-colors">Shop All</Link>
-            <Link to="/search" className="hover:text-brand transition-colors">Search</Link>
+            <Link to="/" className="hover:text-brand transition-colors">Accueil</Link>
+            <Link to="/collections/all" className="hover:text-brand transition-colors">Tous les produits</Link>
+            <Link to="/search" className="hover:text-brand transition-colors">Rechercher</Link>
           </div>
 
           {/* Actions */}
@@ -61,7 +61,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Search bar */}
+        {/* Barre de recherche */}
         {searchOpen && (
           <div className="border-t border-brand/8 px-4 py-3 bg-white">
             <form onSubmit={handleSearch} className="max-w-xl mx-auto flex gap-2">
@@ -69,11 +69,11 @@ export default function Navbar() {
                 autoFocus
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search shoes..."
+                placeholder="Rechercher des chaussures..."
                 className="flex-1 border border-brand/20 rounded-full px-4 py-2 text-sm outline-none focus:border-brand/50 transition-colors"
               />
               <button type="submit" className="bg-brand text-white text-sm px-5 py-2 rounded-full hover:bg-brand/90 transition-colors">
-                Go
+                OK
               </button>
             </form>
           </div>

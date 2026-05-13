@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
 const links = [
-  { to: "/", label: "Home" },
-  { to: "/collections/all", label: "Shop All" },
-  { to: "/search", label: "Search" },
-  { to: "/tracking", label: "Order Tracking" },
-  { to: "/shipping", label: "Shipping Prices" },
+  { to: "/", label: "Accueil" },
+  { to: "/collections/all", label: "Tous les produits" },
+  { to: "/search", label: "Rechercher" },
+  { to: "/tracking", label: "Suivi de commande" },
+  { to: "/shipping", label: "Tarifs de livraison" },
   { to: "/contact", label: "Contact" },
 ];
 

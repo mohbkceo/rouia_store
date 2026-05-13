@@ -6,7 +6,7 @@ import { useStore } from "../../context/StoreContext.jsx";
 import Button from "../common/Button.jsx";
 import CheckoutForm from "../checkout/CheckoutForm.jsx";
 
-const WHATSAPP_NUMBER = "213553374615"; //213553374615
+const WHATSAPP_NUMBER = "213553374615";
 
 export default function ProductInfo({ product }) {
   const { addToCart } = useStore();
@@ -48,22 +48,22 @@ export default function ProductInfo({ product }) {
 
   function buildWhatsAppMessage(formData) {
     return `
-New Order Request
+Nouvelle demande de commande
 
-Customer:
-- Full Name: ${formData.fullName}
-- Phone Number: ${formData.phoneNumber}
-- Address: ${formData.address}
+Client :
+- Nom complet : ${formData.fullName}
+- Numéro de téléphone : ${formData.phoneNumber}
+- Adresse : ${formData.address}
 
-Product:
-- Title: ${product.title}
-- Variant: ${selectedVariant?.title || "Default"}
-- Quantity: 1
-- Price: ${selectedPrice?.amount || "0"} ${selectedPrice?.currencyCode || ""}
+Produit :
+- Titre : ${product.title}
+- Variante : ${selectedVariant?.title || "Par défaut"}
+- Quantité : 1
+- Prix : ${selectedPrice?.amount || "0"} ${selectedPrice?.currencyCode || ""}
 
-Subtotal: ${selectedPrice?.amount || "0"} ${selectedPrice?.currencyCode || ""}
+Sous-total : ${selectedPrice?.amount || "0"} ${selectedPrice?.currencyCode || ""}
 
-Please confirm this order.
+Veuillez confirmer cette commande.
     `.trim();
   }
 
@@ -111,7 +111,7 @@ Please confirm this order.
 
           {hasDiscount && (
             <span className="rounded-full bg-accent/15 px-2 py-1 text-[10px] sm:text-xs font-bold text-accent">
-              Sale
+              Promotion
             </span>
           )}
         </div>
@@ -120,7 +120,7 @@ Please confirm this order.
       {variants.length > 1 && (
         <div>
           <p className="mb-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-brand/50">
-            Size / Variant
+            Taille / Variante
           </p>
 
           <div className="flex flex-wrap gap-2">
@@ -162,15 +162,15 @@ Please confirm this order.
         className="w-full py-4"
       >
         {added
-          ? "✓ Added to cart"
+          ? "✓ Ajouté au panier"
           : selectedVariant?.availableForSale
-          ? "Add to Cart"
-          : "Out of Stock"}
+          ? "Ajouter au panier"
+          : "Rupture de stock"}
       </Button>
 
       <div className="mt-2 border border-brand/10 rounded-3xl p-5 bg-brand/[0.02]">
         <h2 className="font-semibold text-brand text-lg mb-5">
-          Quick Checkout
+          Commande rapide
         </h2>
 
         <CheckoutForm loading={buyingNow} onSubmit={handleBuyNow} />

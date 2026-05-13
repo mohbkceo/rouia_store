@@ -10,7 +10,7 @@ export default function CategoriesGrid() {
 
   return (
     <section className="px-4">
-      <h2 className="font-display text-2xl font-bold text-brand mb-6">Shop by Category</h2>
+      <h2 className="font-display text-2xl font-bold text-brand mb-6">Acheter par catégorie</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {collections.map((col, i) => (
           <CategoryCard key={col.id} collection={col} index={i} />

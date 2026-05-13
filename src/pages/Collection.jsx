@@ -24,7 +24,7 @@ export default function Collection() {
     if (error) {
       return (
         <EmptyState
-          title="Collections not found"
+          title="Collections non trouvées"
         />
       );
     }
@@ -32,7 +32,7 @@ export default function Collection() {
     if (!collections?.length) {
       return (
         <EmptyState
-          title="No collections yet"
+          title="Aucune collection pour le moment"
         />
       );
     }
@@ -43,11 +43,11 @@ export default function Collection() {
       <section className="px-4 md:px-6 py-10 max-w-7xl mx-auto">
         <div className="mb-10">
           <p className="text-sm uppercase tracking-[0.2em] text-brand/40">
-            Explore
+            Explorer
           </p>
 
           <h1 className="font-display text-4xl md:text-5xl font-bold text-brand mt-2">
-            All Collections
+            Toutes les collections
           </h1>
         </div>
 
@@ -77,7 +77,7 @@ export default function Collection() {
   if (error || !collection) {
     return (
       <EmptyState
-        title="Collection not found"
+        title="Collection non trouvée"
       />
     );
   }
@@ -105,7 +105,7 @@ export default function Collection() {
 
       {products.length === 0 ? (
         <EmptyState
-          title="No products found"
+          title="Aucun produit trouvé"
         />
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
